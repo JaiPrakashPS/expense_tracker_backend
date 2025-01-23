@@ -5,7 +5,8 @@ const mongoose= require('mongoose');
 const { v4: uuidv4 } = require('uuid');
 const PORT = 8000
 
-const mongourl = "mongodb://localhost:27017/Practice";
+const mongourl = "mongodb+srv://jaiprakashps:NYShosLQXpFRnfZd@cluster0.yz7yn.mongodb.net/practice";
+
 
 mongoose.connect(mongourl)
 .then(() => {
@@ -45,7 +46,7 @@ app.get("/api/expenses",async(req,res)=>{
 
 app.get("/api/expenses/:id",async(req,res)=>{
     const {id} = req.params;
-    const expense = await expenseModel.findOne();
+    const expense = await expenseModel.findOne({id});
     res.status(200).json(expense);
 })
 
