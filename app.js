@@ -71,6 +71,19 @@ app.delete("/api/expenses/:id",async(req,res)=>{
 });
 
 
+app.delete("/api/expenses", async (req, res) => {
+    try {
+      const result = await expenseModel.deleteMany({});
+      res.status(200).json({
+        message: "All expenses have been deleted",
+        deletedCount: result.deletedCount,
+      });
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+
 // const server = http.createServer(app);
 // const students = [
 //     {id : 1, name: "Jai"},
